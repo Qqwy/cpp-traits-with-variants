@@ -10,20 +10,21 @@ namespace Trait {
   // empty sentinel
   struct Void {};
 
-  // 'concat' is used as type-only struct for concatenation.
+  // 'markAsImplementation' is used as type-only struct for concatenation of type lists.
+  // (It is named after its purpose rather than its internals).
   // Note the template-template parameter 'List'.
-  template <typename ...> struct concat;
+  template <typename ...> struct markAsImplementation;
 
   // Base case (adding type to empty type list)
   template <template <typename ...> class List, typename T>
-    struct concat<List<Void>, T>
+  struct markAsImplementation<T, List<Void>>
     {
       typedef List<T> type;
     };
 
   // Recursive case (adding type to type list which contains other types already)
   template <template <typename ...> class List, typename ...Types, typename T>
-    struct concat<List<Types...>, T>
+  struct markAsImplementation<T, List<Types...>>
     {
       typedef List<Types..., T> type;
     };

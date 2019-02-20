@@ -9,7 +9,7 @@ namespace Area {
 }
 
 /* Adding Rectangle to Area Trait implementations list. */
-typedef typename Trait::concat<AreaImpls, Rectangle>::type AreaImplsRect;
+typedef typename Trait::markAsImplementation<Rectangle, AreaImpls>::type AreaImplsRect;
 #undef AreaImpls
 #define AreaImpls AreaImplsRect
 

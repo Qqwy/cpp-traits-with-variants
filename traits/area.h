@@ -13,7 +13,6 @@ namespace Area {
   template<typename ...Ts> float area(std::variant<Ts...> const &obj) {
     return std::visit([](auto const &obj){ return area(obj);}, obj);
   }
-
 }
 
 /* No types implement this Trait until they re-define this macro to point to a TypeList that contains them. */

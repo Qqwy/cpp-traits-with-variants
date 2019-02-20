@@ -9,7 +9,7 @@ namespace Area {
 }
 
 /* Adding Circle to Area Trait implementations list. */
-typedef typename Trait::concat<AreaImpls, Circle>::type AreaImplsCircle;
+typedef typename Trait::markAsImplementation<Circle, AreaImpls>::type AreaImplsCircle;
 #undef AreaImpls
 #define AreaImpls AreaImplsCircle
 
