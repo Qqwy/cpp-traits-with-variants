@@ -10,10 +10,7 @@
 #include "traits/area/circle.h"
 
 
-// using AreaVariant =  std::variant<Rectangle, Circle>;
-// using AreaVariant = std::variant<AreaImpls>;
-// typedef AreaImpls AreaImplTypes;
-using AreaVariant = convertToVariant<AreaImpls>::type;
+// using AreaVariant = convertToVariant<AreaImpls>::type;
 
 int main() {
   std::vector<AreaVariant> shapes;
