@@ -9,6 +9,12 @@
 #include "traits/area/rectangle.h"
 #include "traits/area/circle.h"
 
+/*
+  Example of using Traits using std::variant, std::visit and some Template Metaprogramming-trickery.
+
+  NOTE: C++17 is required for generic lambdas (`[](auto &&foo){...}`-style lambdas), as well as `std::variant` and `std::visit` which lived in the `std::experimental`-namespace before.
+
+ */
 
 int main() {
   std::vector<AreaVariant> shapes;
