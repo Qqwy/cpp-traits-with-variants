@@ -9,18 +9,10 @@
 #include "traits/area/rectangle.h"
 #include "traits/area/circle.h"
 
-// namespace Area {
-//   template<typename ...Ts> float area(std::variant<Ts...> const &obj) {
-//     return std::visit([](auto const &obj){ return area(obj);}, obj);
-//   }
-// };
-
 
 using AreaVariant =  std::variant<Rectangle, Circle>;
 
 int main() {
-  std::cout << "Hello, world!\n";
-
   std::vector<AreaVariant> shapes;
   shapes.push_back(Circle{1});
   shapes.push_back(Rectangle{2, 4});
