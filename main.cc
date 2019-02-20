@@ -6,8 +6,8 @@
 #include "shapes/circle.h"
 
 #include "traits/area.h"
-#include "traits/area/rectangle.h"
-#include "traits/area/circle.h"
+#include "trait_implementations/area/rectangle.h"
+#include "trait_implementations/area/circle.h"
 
 /*
   Example of using Traits using std::variant, std::visit and some Template Metaprogramming-trickery.
