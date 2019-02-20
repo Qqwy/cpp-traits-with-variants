@@ -5,7 +5,7 @@
 #include "../../shapes/circle.h"
 
 namespace Area {
-  float area(Circle const & circle);
+  template<> float area<Circle>(Circle const & circle);
 }
 
 #endif //AREA_CIRCLE_H

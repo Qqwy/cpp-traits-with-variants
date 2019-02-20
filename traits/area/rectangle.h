@@ -5,7 +5,7 @@
 #include "../../shapes/rectangle.h"
 
 namespace Area {
-  float area(Rectangle const & rectangle);
+  template<> float area<Rectangle>(Rectangle const & rectangle);
 }
 
 #endif //AREA_RECTANGLE_H
