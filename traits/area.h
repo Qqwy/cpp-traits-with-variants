@@ -1,8 +1,8 @@
 #ifndef AREA_H
 #define AREA_H
 
-
 #include <variant>
+
 #include "../trait.h"
 
 namespace Area {
@@ -16,7 +16,10 @@ namespace Area {
 
 }
 
-#define AreaImpls TypelistVoid
-#define AreaVariant convertToVariant<AreaImpls>::type
+/* No types implement this Trait until they re-define this macro to point to a TypeList that contains them. */
+#define AreaImpls Trait::TypeListEmpty
+
+/* will use the overridden AreaImpls: */
+#define AreaVariant Trait::TypeListVariant<AreaImpls>::type
 
 #endif //AREA_H

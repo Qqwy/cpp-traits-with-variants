@@ -1,40 +1,54 @@
 #ifndef TRAIT_H
 #define TRAIT_H
 
-struct Void {};
+#include <variant>
 
-template <typename ...> struct concat;
+// Template metaprogramming to concatenate type lists,
+// such that Trait implementations can add themselves to the known list of implementations.
 
-template <template <typename ...> class List, typename T>
-  struct concat<List<Void>, T>
-{
-  typedef List<T> type;
-};
+namespace Trait {
+  // empty sentinel
+  struct Void {};
 
-template <template <typename ...> class List, typename ...Types, typename T>
-  struct concat<List<Types...>, T>
-{
-  typedef List<Types..., T> type;
-};
+  // 'concat' is used as type-only struct for concatenation.
+  // Note the template-template parameter 'List'.
+  template <typename ...> struct concat;
 
-template <typename...> struct TypeList {};
+  // Base case (adding type to empty type list)
+  template <template <typename ...> class List, typename T>
+    struct concat<List<Void>, T>
+    {
+      typedef List<T> type;
+    };
 
-template <>
-struct TypeList<Void> {};
-typedef TypeList<Void> TypelistVoid;
+  // Recursive case (adding type to type list which contains other types already)
+  template <template <typename ...> class List, typename ...Types, typename T>
+    struct concat<List<Types...>, T>
+    {
+      typedef List<Types..., T> type;
+    };
+
+  // Type-only struct to keep a type list
+  template <typename...> struct TypeList {};
+
+  // Empty list to concatenate to.
+  template <>
+    struct TypeList<Void> {};
+  typedef TypeList<Void> TypeListEmpty;
 
 
+  // Convert a TypeList to a std::variant.
+  template <typename ...Args>
+    struct TypeListVariant
+    {
+      typedef std::variant<Args...> type;
+    };
 
-template <typename ...Args>
-struct convertToVariant
-{
-  typedef std::variant<Args...> type;
-};
-
-template <typename ...Args>
-struct convertToVariant<TypeList<Args...>>
-{
-  typedef std::variant<Args...> type;
-};
+  template <typename ...Args>
+    struct TypeListVariant<TypeList<Args...>>
+    {
+      typedef std::variant<Args...> type;
+    };
+}
 
 #endif //TRAIT_H
