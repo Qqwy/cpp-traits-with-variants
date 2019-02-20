@@ -1,7 +1,7 @@
 #ifndef AREA_RECTANGLE_H
 #define AREA_RECTANGLE_H
 
-#include "../area.h"
+// #include "../area.h"
 #include "../../shapes/rectangle.h"
 
 namespace Area {

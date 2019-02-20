@@ -1,9 +1,9 @@
 #ifndef AREA_H
 #define AREA_H
 
-namespace Area {
-  // float area(Circle const &t);
-  // float area(Rectangle const &t);
-};
+#include <variant>
 
+namespace Area {
+  template<typename ...Ts> float area(std::variant<Ts...> const &obj);
+}
 #endif //AREA_H
