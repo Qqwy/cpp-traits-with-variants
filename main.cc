@@ -24,7 +24,6 @@ int main() {
   shapes.push_back(Circle{22});
 
   for(AreaVariant const &shape : shapes) {
-    // std::cout << std::visit([](auto &&shape) {return Area::area(shape);}, shape) << std::endl;
     float res = Area::area(shape);
     std::cout << res << std::endl;
   }
